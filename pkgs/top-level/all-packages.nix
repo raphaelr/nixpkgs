@@ -30557,7 +30557,7 @@ with pkgs;
 
   gnome-obfuscate = callPackage ../applications/graphics/gnome-obfuscate { };
 
-  obs-studio = libsForQt5.callPackage ../applications/video/obs-studio {
+  obs-studio = qt6Packages.callPackage ../applications/video/obs-studio {
     ffmpeg_4 = ffmpeg-full;
   };
   obs-studio-plugins = recurseIntoAttrs (callPackage ../applications/video/obs-studio/plugins {});
