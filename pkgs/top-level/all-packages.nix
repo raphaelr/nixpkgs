@@ -28713,6 +28713,8 @@ with pkgs;
     inherit (qt5) wrapQtAppsHook;
   };
 
+  itd = callPackage ../applications/misc/itd { };
+
   jetbrains = (recurseIntoAttrs (callPackages ../applications/editors/jetbrains {
     vmopts = config.jetbrains.vmopts or null;
     jdk = jetbrains.jdk;
