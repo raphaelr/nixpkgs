@@ -452,6 +452,7 @@
   ./services/hardware/illum.nix
   ./services/hardware/interception-tools.nix
   ./services/hardware/irqbalance.nix
+  ./services/hardware/itd.nix
   ./services/hardware/joycond.nix
   ./services/hardware/kanata.nix
   ./services/hardware/lcd.nix
