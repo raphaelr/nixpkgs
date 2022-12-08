@@ -2,6 +2,7 @@
 , rustPlatform
 , fetchCrate
 , stdenv
+, darwin
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -14,6 +15,10 @@ rustPlatform.buildRustPackage rec {
   };
 
   cargoSha256 = "sha256-SMqiwM6LrXXjV4Mb2BY9WbeKKPkxiYxPyZ4aepVIAqU=";
+
+  buildInputs = [
+    darwin.apple_sdk.frameworks.Security
+  ];
 
   meta = with lib; {
     description = "Minimalistic shell prompt";
