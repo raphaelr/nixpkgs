@@ -2328,4 +2328,7 @@ self: super: {
   # posix-api has had broken tests since 2020 (until at least 2023-01-11)
   # raehik has a fix pending: https://github.com/andrewthad/posix-api/pull/14
   posix-api = dontCheck super.posix-api;
+
+  # multiple bounds too strict
+  sfnt2woff = doJailbreak super.sfnt2woff;
 } // import ./configuration-tensorflow.nix {inherit pkgs haskellLib;} self super
