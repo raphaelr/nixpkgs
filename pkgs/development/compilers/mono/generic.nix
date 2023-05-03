@@ -37,9 +37,17 @@ stdenv.mkDerivation rec {
     ./autogen.sh --prefix $out $configureFlags
   '';
 
-  # We want pkg-config to take priority over the dlls in the Mono framework and the GAC
-  # because we control pkg-config
-  patches = [ ./pkgconfig-before-gac.patch ] ++ extraPatches;
+  patches = [
+    # We want pkg-config to take priority over the dlls in the Mono framework and the GAC
+    # because we control pkg-config
+    ./pkgconfig-before-gac.patch
+
+    # mono tries to JIT code into memory allocated with mmap(MAP_32BIT), but
+    # due to a linux kernel regression in 6.1 this can fail and cause a crash,
+    # because mono does not handle mmap failures.
+    # Reference: https://lore.kernel.org/all/cb8dc31a-fef2-1d09-f133-e9f7b9f9e77a@sony.com/
+    ./no-mmap-32bit.patch
+  ] ++ extraPatches;
 
   # Patch all the necessary scripts. Also, if we're using LLVM, we fix the default
   # LLVM path to point into the Mono LLVM build, since it's private anyway.
