@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, ocamlPackages, gnome2, pkg-config, makeWrapper, glib
+{ lib, stdenv, fetchurl, fetchpatch, ocamlPackages, gnome2, pkg-config, makeWrapper, glib
 , libtool, libpng, bison, expat, fontconfig, gd, pango, libjpeg, libwebp, libX11, libXaw
 }:
 # We need an old version of Graphviz for format compatibility reasons.
@@ -23,16 +23,16 @@ stdenv.mkDerivation rec {
   prePatch="ln -s . a; ln -s . b";
   patchFlags = ["-p0"];
   patches = [
-    (fetchurl {
-      url = "https://src.fedoraproject.org/cgit/rpms/monotone-viz.git/plain/monotone-viz-1.0.2-dot.patch";
+    (fetchpatch {
+      url = "https://src.fedoraproject.org/rpms/monotone-viz/raw/c9f4c1bebe01bb471df05d8a37ca4b6d630574ec/f/monotone-viz-1.0.2-dot.patch";
       sha256 = "0risfy8iqmkr209hmnvpv57ywbd3rvchzzd0jy2lfyqrrrm6zknw";
     })
-    (fetchurl {
-      url = "https://src.fedoraproject.org/cgit/rpms/monotone-viz.git/plain/monotone-viz-1.0.2-new-stdio.patch";
-      sha256 = "16bj0ppzqd45an154dr7sifjra7lv4m9anxfw3c56y763jq7fafa";
+    (fetchpatch {
+      url = "https://src.fedoraproject.org/rpms/monotone-viz/raw/c9f4c1bebe01bb471df05d8a37ca4b6d630574ec/f/monotone-viz-1.0.2-new-stdio.patch";
+      hash = "sha256-9xQzJ+oYz06fDFOe1YOOisEZnwiwShqr2Rt7IXiu6Zo=";
     })
-    (fetchurl {
-      url = "https://src.fedoraproject.org/cgit/rpms/monotone-viz.git/plain/monotone-viz-1.0.2-typefix.patch";
+    (fetchpatch {
+      url = "https://src.fedoraproject.org/rpms/monotone-viz/raw/c9f4c1bebe01bb471df05d8a37ca4b6d630574ec/f/monotone-viz-1.0.2-typefix.patch";
       sha256 = "1gfp82rc7pawb5x4hh2wf7xh1l1l54ib75930xgd1y437la4703r";
     })
   ];
