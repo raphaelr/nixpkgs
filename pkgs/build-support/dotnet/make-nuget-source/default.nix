@@ -15,12 +15,7 @@ let
     buildCommand = ''
       mkdir -p $out/{lib,share}
 
-      (
-        shopt -s nullglob
-        for nupkg in ${lib.concatMapStringsSep " " (dep: "\"${dep}\"/*.nupkg") deps}; do
-          cp --no-clobber "$nupkg" $out/lib
-        done
-      )
+      find ${lib.concatStringsSep " " deps} -name '*.nupkg' -exec cp --no-clobber '{}' $out/lib ';'
 
       # Generates a list of all licenses' spdx ids, if available.
       # Note that this currently ignores any license provided in plain text (e.g. "LICENSE.txt")
