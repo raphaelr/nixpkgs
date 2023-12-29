@@ -104,6 +104,16 @@ stdenv.mkDerivation rec {
       url = "https://github.com/libsdl-org/SDL-1.2/commit/d7e00208738a0bc6af302723fe64908ac35b777b.patch";
       sha256 = "sha256-fuxXsqZW94/C8CKu9LakppCU4zHupj66O2MngQ4BO9o=";
     })
+    # sdl.m4: Don't change PATH if cross-compiling
+    (fetchpatch {
+      url = "https://github.com/libsdl-org/SDL-1.2/commit/f7aab57364a9d3f608a7f6999b951dd6cc8c11f2.patch";
+      hash = "sha256-KWW0dxROxJIwbOXTeoRcplaojOj4Y4FNf8/7tW0FLVo=";
+    })
+    # sdl.m4: Use pkg-config if available - sdl-config hangs on Darwin
+    (fetchpatch {
+      url = "https://github.com/libsdl-org/SDL-1.2/commit/fa041e14b5f69a820b0250ae7f450111af2fdbba.patch";
+      hash = "sha256-aUw2YhYPnstZYs/tz7qkQt12fcONrhjjwrRRZPj4QIY=";
+    })
   ];
 
   postInstall = ''
